@@ -1,0 +1,8 @@
+Include/
+Lib/
+Scripts/
+pyvenv.cfg
+*.pyc
+__pycache__/
+.vscode/
+.idea/
