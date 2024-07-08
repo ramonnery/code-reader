@@ -1,1 +1,5 @@
-print('../temp' + '/0')
+x = []
+if x:
+    print('tem alguma coisa')
+else:
+    print('nao tem nada')

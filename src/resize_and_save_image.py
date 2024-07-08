@@ -1,5 +1,6 @@
 import cv2
 
+
 def resize_and_save_image(image_path, output_path):
     target_width = 2481
     target_height = 3507
@@ -25,13 +26,13 @@ def resize_and_save_image(image_path, output_path):
 
 
 # Exemplo de uso
-image_path = r'C:\Users\hercu\OneDrive\Documentos\cartas-juntas\teste.jpg'
+# image_path = r'C:\Users\hercu\OneDrive\Documentos\cartas-juntas\teste.jpg'
 
-output_path = r'C:\Users\hercu\OneDrive\Documentos\cartas-juntas\nova-img.jpg'
+# output_path = r'C:\Users\hercu\OneDrive\Documentos\cartas-juntas\nova-img.jpg'
 
-success = resize_and_save_image(image_path, output_path)
+# success = resize_and_save_image(image_path, output_path)
 
-if success:
-    print("Imagem redimensionada e salva com sucesso!")
-else:
-    print("Erro ao redimensionar e salvar a imagem.")
+# if success:
+#     print("Imagem redimensionada e salva com sucesso!")
+# else:
+#     print("Erro ao redimensionar e salvar a imagem.")
