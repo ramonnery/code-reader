@@ -3,8 +3,8 @@ import pytesseract as pt
 from is_valid_code import is_valid_code
 from to_name import to_name
 
-
-pt.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+# pt.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe' # em casa
+pt.pytesseract.tesseract_cmd = r'C:\Users\rcorreia\AppData\Local\Programs\Tesseract-OCR/tesseract.exe'
 
 def get_code(images_path_list):
     x1, y1 = 839, 353  # Coordenadas do canto superior esquerdo
@@ -27,21 +27,20 @@ def get_code(images_path_list):
             # cv2.destroyAllWindows()
             
             # Extrair texto da ROI usando Tesseract
-            values = pt.image_to_string(roi).split()
+            code = pt.image_to_string(roi).replace("\n", "").replace(' ', '')
             print("Texto extraído da ROI:")
-            print(values)
-            
-            if values:
-                code = values[-1]
-                if is_valid_code(code):
-                    new_code = to_name(code)
-                    codes_list.append(new_code)
+            print(code)
+            code = is_valid_code(code)
 
-                else:
-                    break
+            if code:
+                new_code = to_name(code)
+                codes_list.append(new_code)
 
-            else:
-                continue
+            #     else:
+            #         break
+
+            # else:
+            #     continue
 
     return codes_list
 

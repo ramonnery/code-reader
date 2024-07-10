@@ -17,5 +17,7 @@ def get_image_paths_from_folder(folder_path):
     return image_files
 
 # Exemplo de uso
-# folder_path = r'C:\Users\hercu\OneDrive\Imagens\erros-estranhos'
+# folder_path = r"C:\Users\rcorreia\Documents\cartas"
 # images = get_image_paths_from_folder(folder_path)
+
+# print(len(images))

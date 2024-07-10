@@ -15,7 +15,7 @@ from get_code import get_code
 # paths = get_update_json()
 
 paths = {
-    'path_input': r"C:\Users\hercu\OneDrive\Imagens\erros-estranhos",
+    'path_input': r"C:\Users\rcorreia\Documents\cartas",
     'path_output': "C:/Users/hercu/Videos/Captures"
 }
 
@@ -35,3 +35,4 @@ for path in images_path:
 codes_list = get_code(images_path_list)
 
 print(codes_list)
+print(len(codes_list))
