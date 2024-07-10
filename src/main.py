@@ -3,6 +3,8 @@ from resize_and_save_image import resize_and_save_image
 from open_window import open_window
 import os
 from get_code import get_code
+from is_folder_empty import is_folder_empty
+
 
 # open_window()
 
@@ -20,10 +22,11 @@ paths = {
 }
 
 images_path_list = []
+temp_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'temp').replace(r'\src', '')
 
 images_path = get_image_paths_from_folder(paths['path_input'])
-temp_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'temp').replace(r'\src', '')
 counter = 1
+
 
 for path in images_path:
     output_path = temp_path + r'\LT_00' + f'{counter}.jpeg'  
@@ -32,7 +35,10 @@ for path in images_path:
 
     counter += 1
 
-codes_list = get_code(images_path_list)
 
-print(codes_list)
-print(len(codes_list))
+while not is_folder_empty(temp_path):   
+    images = get_code(images_path_list)
+    images_path_list = images_path_list[images:]
+
+# print(codes_list)
+# print(len(codes_list))

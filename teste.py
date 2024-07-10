@@ -1,7 +1,6 @@
-valor = ''
+x = ['oi', 'olá', 'alô']
 
-if valor:
-    print(valor)
-
-else:
-    print('não tem valor nenhum.')
+x = x[2:]
+print(x)
+x = x[2:]
+print(x)
