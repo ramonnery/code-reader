@@ -38,11 +38,13 @@ def get_code(images_path_list):
             if code:
                 new_code.append(to_name(code))
 
-            if len(new_letter) >= 2 and code:  # Eu tenho 2 ou mais páginas na minha lista?
-                new_letter.pop()
-                generate_letter(new_letter, new_code[-1], r'C:\Users\rcorreia\Documents\nomeadas')
-                print(f'{new_code[-1]} criado com suceeso!')
-                break
-                
-    return len(new_letter)
+            if (len(new_letter) >= 2 and code) or (len(new_letter) == len(images_path_list)):
+                if len(new_letter) != len(images_path_list):
+                    new_letter.pop()
+
+                generate_letter(new_letter, new_code[0], r'C:\Users\rcorreia\Documents\nomeadas')
+                print(f'{new_code[0]} criado com suceeso!')
+
+                return len(new_letter)
+    
 
