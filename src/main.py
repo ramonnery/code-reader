@@ -35,10 +35,12 @@ for path in images_path:
 
     counter += 1
 
-
+c = 0
 while not is_folder_empty(temp_path):   
     images = get_code(images_path_list)
     images_path_list = images_path_list[images:]
+    c += 1
 
+print(f'TOTAL: {c}')
 # print(codes_list)
 # print(len(codes_list))

@@ -22,7 +22,7 @@ def select_roi(event, x, y, flags, param):
         cv2.imshow("image", image)
 
 # Carregar a imagem
-image = cv2.imread('C:\\Users\\hercu\\OneDrive\\Documentos\\code-reader\\temp\\LT_003.jpeg')
+image = cv2.imread(r'C:\Users\rcorreia\Documents\code-reader\temp\LT_001.jpeg')
 clone = image.copy()
 cv2.namedWindow("image")
 cv2.setMouseCallback("image", select_roi)

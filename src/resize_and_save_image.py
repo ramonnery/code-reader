@@ -1,5 +1,5 @@
 import cv2
-
+from deskew_image import deskew_image
 
 def resize_and_save_image(image_path, output_path):
     target_width = 2481
@@ -23,6 +23,8 @@ def resize_and_save_image(image_path, output_path):
     else:
         print("Erro ao salvar a imagem redimensionada.")
     return success
+    
+
 
 
 # Exemplo de uso

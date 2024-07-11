@@ -8,8 +8,10 @@ from generate_letter import generate_letter
 pt.pytesseract.tesseract_cmd = r'C:\Users\rcorreia\AppData\Local\Programs\Tesseract-OCR/tesseract.exe'
 
 def get_code(images_path_list):
-    x1, y1 = 839, 353  # Coordenadas do canto superior esquerdo
-    x2, y2 = 1466, 527  # Coordenadas do canto inferior direito
+    # x1, y1 = 839, 353  # Coordenadas do canto superior esquerdo
+    # x2, y2 = 1466, 527  # Coordenadas do canto inferior direito
+    x1, y1 = 910, 407  # Coordenadas do canto superior esquerdo
+    x2, y2 = 1488, 575  # Coordenadas do canto inferior direito
     new_code = []
     new_letter = []
     
@@ -24,9 +26,9 @@ def get_code(images_path_list):
             roi = img[y1:y2, x1:x2]
 
             # # Mostrar a ROI (opcional)
-            # cv2.imshow("ROI", roi)
-            # cv2.waitKey(0)
-            # cv2.destroyAllWindows()
+            cv2.imshow("ROI", roi)
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()
             
             # Extrair texto da ROI usando Tesseract
             code = pt.image_to_string(roi).replace("\n", "").replace(' ', '')
