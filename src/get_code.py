@@ -3,6 +3,7 @@ import pytesseract as pt
 from is_valid_code import is_valid_code
 from to_name import to_name
 from generate_letter import generate_letter
+from deskew_image import deskew_image
 
 # pt.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe' # em casa
 pt.pytesseract.tesseract_cmd = r'C:\Users\rcorreia\AppData\Local\Programs\Tesseract-OCR/tesseract.exe'
@@ -17,6 +18,7 @@ def get_code(images_path_list):
     
     for image_path in images_path_list:
         img = cv2.imread(image_path)
+        img = deskew_image(img)
         
         # Verificar se as coordenadas são válidas
         if x1 < 0 or y1 < 0 or x2 > img.shape[1] or y2 > img.shape[0]:
@@ -26,9 +28,9 @@ def get_code(images_path_list):
             roi = img[y1:y2, x1:x2]
 
             # # Mostrar a ROI (opcional)
-            cv2.imshow("ROI", roi)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
+            # cv2.imshow("ROI", roi)
+            # cv2.waitKey(0)
+            # cv2.destroyAllWindows()
             
             # Extrair texto da ROI usando Tesseract
             code = pt.image_to_string(roi).replace("\n", "").replace(' ', '')
