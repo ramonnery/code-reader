@@ -8,6 +8,7 @@ from deskew_image import deskew_image
 # pt.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe' # em casa
 pt.pytesseract.tesseract_cmd = r'C:\Users\rcorreia\AppData\Local\Programs\Tesseract-OCR/tesseract.exe'
 
+
 def get_code(images_path_list):
     # x1, y1 = 839, 353  # Coordenadas do canto superior esquerdo
     # x2, y2 = 1466, 527  # Coordenadas do canto inferior direito

@@ -11,6 +11,13 @@ def select_directory(entry):
     if directory:
         entry.set(directory)
 
+def center_window(root, width, height):
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+    x = int((screen_width - width) / 2)
+    y = int((screen_height - height) / 2)
+    root.geometry(f'{width}x{height}+{x}+{y}')
+
 # Função para abrir a janela de configuração
 def open_config_window():
     config_window = ctk.CTkToplevel(app)
@@ -95,11 +102,11 @@ def start_processing():
 # Configuração da janela principal
 app = ctk.CTk()
 app.title("Nomeador de Cartas")
-app.geometry("400x300")
+center_window(app, 500, 400)
 
 # Botões principais
-ctk.CTkButton(app, text="Configurações", command=open_config_window).pack(pady=20)
-ctk.CTkButton(app, text="Processar", command=start_processing).pack(pady=20)
+ctk.CTkButton(app, text="Configurações", command=open_config_window).pack(side=ctk.LEFT, pady=20, padx=50)
+ctk.CTkButton(app, text="Processar", command=start_processing).pack(side=ctk.LEFT, pady=20, padx=50)
 
 # Carregar os caminhos do arquivo JSON ao iniciar
 paths = {}

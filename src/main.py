@@ -33,3 +33,5 @@ def main():
     # print(f'TOTAL: {c}')
 # print(codes_list)
 # print(len(codes_list))
+
+main()
