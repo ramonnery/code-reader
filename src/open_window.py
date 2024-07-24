@@ -5,6 +5,8 @@ from main import main
 import threading
 import os
 from time import sleep
+from load_paths import load_paths
+from pathlib import Path
 
 # Função para selecionar um diretório
 def select_directory(entry):
@@ -33,15 +35,6 @@ def open_config_window():
     config_window.grid_columnconfigure(0, weight=1)
     config_window.grid_columnconfigure(1, weight=1)
     config_window.grid_columnconfigure(2, weight=1)
-
-    # Função para ler os caminhos do arquivo JSON
-    def load_paths():
-        try:
-            with open('paths.json', 'r') as json_file:
-                paths = json.load(json_file)
-                return paths
-        except FileNotFoundError:
-            return {"input_path": "", "output_path": ""}
 
     # Carregar os caminhos do arquivo JSON
     paths = load_paths()
@@ -97,6 +90,7 @@ def open_config_window():
         }
         with open('paths.json', 'w') as json_file:
             json.dump(paths, json_file)
+
         messagebox.showinfo("Salvar", "Configurações salvas com sucesso!")
         config_window.destroy()  # Fecha a janela de configuração
 
@@ -120,11 +114,10 @@ def start_processing():
     threading.Thread(target=start_update_thread).start()
 
 def start_update_thread():
-
+    paths = load_paths()
     input_path = paths['input_path']
-    temp_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'temp').replace(r'\src', '')
-
-
+    sleep(2)
+    temp_path = str(Path(paths['input_path']).parent / 'temp')
 
     files_input = len(os.listdir(input_path)) * 2
     files_temp = len(os.listdir(temp_path))
@@ -202,11 +195,5 @@ progressbar.set(0)
 progressbar.grid(row=2, column=0, columnspan=4, sticky='ews', padx=0, pady=0)
 
 # Carregar os caminhos do arquivo JSON ao iniciar
-paths = {}
-try:
-    with open('paths.json', 'r') as json_file:
-        paths = json.load(json_file)
-except FileNotFoundError:
-    pass
 
 app.mainloop()
