@@ -1,4 +1,4 @@
-import customtkinter as ctk
+from customtkinter import CTk, CTkToplevel, StringVar, CTkLabel, CTkEntry,  CTkButton, CTkLabel, CTkProgressBar
 from tkinter import filedialog, messagebox
 import json
 from main import main
@@ -23,7 +23,7 @@ def center_window(root, width, height):
 
 # Função para abrir a janela de configuração
 def open_config_window():
-    config_window = ctk.CTkToplevel(app)
+    config_window = CTkToplevel(app)
     config_window.title("Configurações")
     config_window.grab_set()  # Torna a janela de configuração modal
 
@@ -42,19 +42,19 @@ def open_config_window():
     paths = load_paths()
 
     # Campo para diretório de entrada
-    input_path = ctk.StringVar(value=paths.get("input_path", ""))
-    ctk.CTkLabel(config_window,
+    input_path = StringVar(value=paths.get("input_path", ""))
+    CTkLabel(config_window,
                  text="Diretório de Entrada",
                  font=('Segoe UI', 18),
                  ).grid(pady=5, column=1, row=0)
-    input_entry = ctk.CTkEntry(config_window,
+    input_entry = CTkEntry(config_window,
                                textvariable=input_path,
                                width=300,
                                height=30,
                                corner_radius=0,
                                )
     input_entry.grid(pady=5, padx=15, column=0, columnspan=2, row=1)
-    ctk.CTkButton(config_window,
+    CTkButton(config_window,
                   text="Escolher entrada",
                   command=lambda: select_directory(input_path),
                   fg_color='#0066ff',
@@ -66,14 +66,14 @@ def open_config_window():
                   ).grid(pady=5, padx=15, column=3, row=1)
 
     # Campo para diretório de saída
-    output_path = ctk.StringVar(value=paths.get("output_path", ""))
-    ctk.CTkLabel(config_window,
+    output_path = StringVar(value=paths.get("output_path", ""))
+    CTkLabel(config_window,
                  text="Diretório de Saída",
                  font=('Segoe UI', 18),
                  ).grid(pady=5, row=2, column=1)
-    output_entry = ctk.CTkEntry(config_window, textvariable=output_path, width=300)
+    output_entry = CTkEntry(config_window, textvariable=output_path, width=300)
     output_entry.grid(pady=5, padx=15, column=0, columnspan=2, row=3)
-    ctk.CTkButton(config_window,
+    CTkButton(config_window,
                   text="Escolher saída",
                   command=lambda: select_directory(output_path),
                   fg_color='#0066ff',
@@ -84,14 +84,14 @@ def open_config_window():
                   font=('Segoe UI', -14)
                   ).grid(pady=5, padx=15, column=3, row=3)
 
-    tesseract_path = ctk.StringVar(value=paths.get("tesseract_path", ""))
-    ctk.CTkLabel(config_window,
+    tesseract_path = StringVar(value=paths.get("tesseract_path", ""))
+    CTkLabel(config_window,
                  text="Diretório OCR",
                  font=('Segoe UI', 18),
                  ).grid(pady=5, row=4, column=1)
-    tesseract_entry = ctk.CTkEntry(config_window, textvariable=tesseract_path, width=300)
+    tesseract_entry = CTkEntry(config_window, textvariable=tesseract_path, width=300)
     tesseract_entry.grid(pady=5, padx=15, column=0, columnspan=2, row=5)
-    ctk.CTkButton(config_window,
+    CTkButton(config_window,
                   text="Escolher OCR",
                   command=lambda: select_directory(tesseract_path),
                   fg_color='#0066ff',
@@ -116,7 +116,7 @@ def open_config_window():
         config_window.destroy()  # Fecha a janela de configuração
 
     # Botão de salvar
-    ctk.CTkButton(config_window,
+    CTkButton(config_window,
                   text="Salvar",
                   command=save_paths,
                   fg_color='#0066ff',
@@ -172,7 +172,7 @@ def start_update_thread():
             return
 
 # Configuração da janela principal
-app = ctk.CTk()
+app = CTk()
 app.title("Nomeador de Cartas")
 center_window(app, 500, 320)
 
@@ -185,7 +185,7 @@ app.grid_columnconfigure(1, weight=1)
 app.grid_columnconfigure(2, weight=1)
 
 # Botão no canto superior esquerdo
-settings_button = ctk.CTkButton(app, text="CONFIGURAÇÕES",
+settings_button = CTkButton(app, text="CONFIGURAÇÕES",
                                 command=open_config_window,
                                 fg_color='#0066ff',
                                 hover_color='#0055cc',
@@ -196,7 +196,7 @@ settings_button = ctk.CTkButton(app, text="CONFIGURAÇÕES",
 settings_button.grid(row=0, column=0, sticky='nw', pady=10, padx=10)
 
 # Botão centralizado
-process_button = ctk.CTkButton(app, text="PROCESSAR", 
+process_button = CTkButton(app, text="PROCESSAR", 
                               command=start_processing,
                               fg_color='#0066ff',
                               hover_color='#0055cc',
@@ -206,7 +206,7 @@ process_button = ctk.CTkButton(app, text="PROCESSAR",
                               font=('Segoe UI', -22))
 process_button.grid(row=1, column=0, columnspan=3, pady=0, padx=0)
 
-progressbar = ctk.CTkProgressBar(app, orientation="horizontal",
+progressbar = CTkProgressBar(app, orientation="horizontal",
                                  height=25,
                                  corner_radius=0,
                                  progress_color='#0066ff',
