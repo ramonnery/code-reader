@@ -15,6 +15,7 @@ def main():
     os.makedirs(temp_folder, exist_ok=True)
     FILE_ATTRIBUTE_HIDDEN = 0x02
     temp_folder = str(temp_folder)
+    delete_files_in_directory(temp_folder)
     # Converte o caminho para o formato de bytes necessário para SetFileAttributesW
     path_bytes = temp_folder.encode('utf-16le')
 
@@ -44,7 +45,6 @@ def main():
     
     except InvalidFormat as e:
         raise InvalidFormat(str(e))
-
     except OnlyOneFileInSourceFolderError as e:
         raise OnlyOneFileInSourceFolderError(str(e))
 
