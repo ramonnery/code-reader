@@ -1,5 +1,4 @@
 import cv2
-from deskew_image import deskew_image
 
 def resize_and_save_image(image_path, output_path):
     target_width = 2481
