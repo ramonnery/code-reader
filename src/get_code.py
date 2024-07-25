@@ -5,7 +5,9 @@ from to_name import to_name
 from generate_letter import generate_letter
 from load_paths import load_paths
 # pt.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe' # em casa
-pt.pytesseract.tesseract_cmd = r'C:\Users\rcorreia\AppData\Local\Programs\Tesseract-OCR/tesseract.exe'
+
+
+pt.pytesseract.tesseract_cmd = load_paths()['tesseract_path'] + '\\tesseract.exe'
 
 
 def get_code(images_path_list):

@@ -32,6 +32,8 @@ def open_config_window():
     config_window.grid_rowconfigure(2, weight=1)
     config_window.grid_rowconfigure(3, weight=1)
     config_window.grid_rowconfigure(4, weight=1)
+    config_window.grid_rowconfigure(5, weight=1)
+    config_window.grid_rowconfigure(6, weight=1)
     config_window.grid_columnconfigure(0, weight=1)
     config_window.grid_columnconfigure(1, weight=1)
     config_window.grid_columnconfigure(2, weight=1)
@@ -82,11 +84,30 @@ def open_config_window():
                   font=('Segoe UI', -14)
                   ).grid(pady=5, padx=15, column=3, row=3)
 
+    tesseract_path = ctk.StringVar(value=paths.get("tesseract_path", ""))
+    ctk.CTkLabel(config_window,
+                 text="Diretório OCR",
+                 font=('Segoe UI', 18),
+                 ).grid(pady=5, row=4, column=1)
+    tesseract_entry = ctk.CTkEntry(config_window, textvariable=tesseract_path, width=300)
+    tesseract_entry.grid(pady=5, padx=15, column=0, columnspan=2, row=5)
+    ctk.CTkButton(config_window,
+                  text="Escolher OCR",
+                  command=lambda: select_directory(tesseract_path),
+                  fg_color='#0066ff',
+                  hover_color='#0055cc',
+                  corner_radius=0,
+                  width=120,
+                  height=30,
+                  font=('Segoe UI', -14)
+                  ).grid(pady=5, padx=15, column=3, row=5)
+
     # Função para salvar os caminhos no arquivo JSON
     def save_paths():
         paths = {
             "input_path": input_path.get(),
-            "output_path": output_path.get()
+            "output_path": output_path.get(),
+            "tesseract_path": tesseract_path.get(),
         }
         with open('paths.json', 'w') as json_file:
             json.dump(paths, json_file)
@@ -104,7 +125,7 @@ def open_config_window():
                   width=180,
                   height=40,
                   font=('Segoe UI', -18)
-                  ).grid(pady=20, column=0, columnspan=4, row=4)
+                  ).grid(pady=20, column=0, columnspan=4, row=6)
 
 # Função para iniciar o processamento
 def start_processing():
